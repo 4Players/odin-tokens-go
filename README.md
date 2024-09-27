@@ -1,6 +1,6 @@
 # github.com/4Players/odin-tokens-go
 
-[![GitHub License](https://img.shields.io/github/license/4Players/odin-tokens-go.svg)][license-url]
+[![GitHub License](https://img.shields.io/badge/license-ISC-green.svg)][license-url]
 
 This is a lightweight module to generate API keys and tokens used by 4Players ODIN.
 
@@ -21,7 +21,7 @@ graph TB
 ```golang
 import (
     "fmt"
-	odin_tokens "github.com/4Players/odin-tokens-go"
+    odin_tokens "github.com/4Players/odin-tokens-go"
 )
 
 accessKey := "<YOUR API KEY HERE>"
