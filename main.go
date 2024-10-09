@@ -28,12 +28,12 @@ func GenerateAccessKey() (string, error) {
 	}
 	// checksum
 	key[32] = crc8(key[1:32])
-	return base64.RawURLEncoding.EncodeToString(key), nil
+	return base64.StdEncoding.EncodeToString(key), nil
 }
 
 // LoadAccessKey validates and loads a key pair from an ODIN access key.
 func LoadAccessKey(accessKey string) (KeyPair, error) {
-	bytes, err := base64.RawURLEncoding.DecodeString(accessKey)
+	bytes, err := base64.StdEncoding.DecodeString(accessKey)
 	if err != nil || bytes[0] != 0x01 || len(bytes) != 33 || crc8(bytes[1:32]) != bytes[32] {
 		return KeyPair{}, errors.New("invalid access key")
 	}
@@ -56,7 +56,7 @@ func GetKeyId(publicKey ed25519.PublicKey) string {
 			result[1+j] ^= hash[i*8+j]
 		}
 	}
-	return base64.RawURLEncoding.EncodeToString(result)
+	return base64.StdEncoding.EncodeToString(result)
 }
 
 type TokenOptions struct {
