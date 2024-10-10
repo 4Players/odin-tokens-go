@@ -100,6 +100,9 @@ func NewTokenGenerator(credentials interface{}) (*TokenGenerator, error) {
 func (tg *TokenGenerator) CreateToken(roomId string, userId string, options TokenOptions) (string, error) {
 	nbf := time.Now().Unix()
 	exp := nbf + int64(options.Lifetime)
+	if options.Subject == "" {
+		options.Subject = "connect"
+	}
 	claims := map[string]interface{}{
 		"rid": roomId,
 		"uid": userId,
